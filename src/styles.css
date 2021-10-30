@@ -1,0 +1,50 @@
+body {
+  font-family: "Courier New", Courier, monospace;
+  width: 800px;
+  user-select: none;
+}
+
+button {
+  border-radius: 15px;
+  border: none;
+  padding: 5px 8px;
+  color: gray;
+}
+
+button:hover {
+  cursor: pointer;
+  color: black;
+  background-color: rgba(241, 248, 140, 0.61);
+}
+
+label {
+  cursor: pointer;
+  margin: 10px;
+}
+
+.place {
+  font-size: 20px;
+}
+
+.place-list p,
+.food p {
+  font-size: 25px;
+  color: white;
+  padding: 15px 0 0 15px;
+  margin-top: 5px;
+  border-bottom: dashed;
+}
+
+.finished-placeList p,
+.finished-foodList p {
+  text-align: center;
+  margin: 5px;
+}
+
+.finished-placeList,
+.finished-foodList {
+  background-color: rgb(213, 235, 204);
+  border-radius: 5px;
+  color: rgba(107, 112, 116, 0.664);
+  padding-left: 15px;
+}
