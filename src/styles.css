@@ -47,4 +47,5 @@ label {
   border-radius: 5px;
   color: rgba(107, 112, 116, 0.664);
   padding-left: 15px;
+  min-height: 50px;
 }

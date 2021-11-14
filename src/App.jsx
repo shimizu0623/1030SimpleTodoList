@@ -9,23 +9,19 @@ import { CompleteFood } from "./components/CompleteFood";
 export const App = () => {
   const [todoText, setTodoText] = useState("");
 
-  const [incompletePlaces, setIncompletePlaces] = useState([
-    "スペイン広場周辺　Piazza di Spagna",
-    "テスタッチョ　Testaccio",
-    "コロッセオ　Colosseo"
-  ]);
-  const [completePlaces, setCompletePlaces] = useState([
-    "サン・ピエトロ大聖堂 Basilica di San Pietro"
-  ]);
+  const [incompletePlaces, setIncompletePlaces] = useState([]);
+    // "スペイン広場周辺　Piazza di Spagna",
+    // "テスタッチョ　Testaccio",
+    // "コロッセオ　Colosseo"
+  const [completePlaces, setCompletePlaces] = useState([]);
+    // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
-  const [incompleteFoods, setIncompleteFoods] = useState([
-    "ダ・ブカティーノ(Da Bucatino)",
-    "イル・フィーコ(Il Fico)"
-  ]);
+  const [incompleteFoods, setIncompleteFoods] = useState([]);
+    // "ダ・ブカティーノ(Da Bucatino)",
+    // "イル・フィーコ(Il Fico)"
 
-  const [completeFoods, setCompleteFoods] = useState([
-    "サン・ピエトロ大聖堂 Basilica di San Pietro"
-  ]);
+  const [completeFoods, setCompleteFoods] = useState([]);
+  // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
 
