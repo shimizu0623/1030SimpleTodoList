@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { InputTodo } from "./components/InputTodo";
-import { IncompletePlaces } from "./components/IncompletePlaces";
-import { CompletePlaces } from "./components/CompletePlaces";
-import { IncompleteFood } from "./components/IncompleteFood";
-import { CompleteFood } from "./components/CompleteFood";
+import { InputTodo } from "./components/InputTodo.jsx";
+import { IncompletePlaces } from "./components/IncompletePlaces.jsx";
+import { CompletePlaces } from "./components/CompletePlaces.jsx";
+import { IncompleteFood } from "./components/IncompleteFood.jsx";
+import { CompleteFood } from "./components/CompleteFood.jsx";
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
