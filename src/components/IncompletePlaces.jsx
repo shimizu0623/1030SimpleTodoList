@@ -1,6 +1,7 @@
 import React from "react";
 
 const style = {
+  fontSize: "20px",
   backgroundColor: "rgb(247, 203, 210)",
   borderRadius: "5px",
   minHeight: "350px"

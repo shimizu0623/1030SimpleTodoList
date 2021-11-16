@@ -6,8 +6,23 @@ import { CompletePlaces } from "./components/CompletePlaces.jsx";
 import { IncompleteFood } from "./components/IncompleteFood.jsx";
 import { CompleteFood } from "./components/CompleteFood.jsx";
 
+localStorage.setItem('key','atai')
+var key = localStorage.getItem('key') 
+localStorage.removeItem('key')
+
+if (typeof window.localStorage !== 'undefined'){
+  /// localStorageに対応済み
+  console.log('やった！localStorage対応済み！');
+}
+else{
+  /// localStorageには未対応
+  console.error('残念...localStorage未対応！');
+}
+
+
 export const App = () => {
   const [todoText, setTodoText] = useState("");
+  // const [change, setChange] = useState()
 
   const [incompletePlaces, setIncompletePlaces] = useState([]);
     // "スペイン広場周辺　Piazza di Spagna",
@@ -38,6 +53,8 @@ export const App = () => {
     setTodoText("");
   };
 
+  // const onClickHandleChange = (event) => setChange(event.target.value)
+
   const onClickCompletePlace = (index) => {
     const newIncompletePlace = [...incompletePlaces];
     newIncompletePlace.splice(index, 1);
@@ -56,16 +73,28 @@ export const App = () => {
     setCompleteFoods(newCompleteFood);
   };
 
-  const onClickDeletePlace = (index) => {
-    const DeletePlace = [...incompletePlaces];
-    DeletePlace.splice(index, 1);
-    setIncompletePlaces(DeletePlace);
-  };
+  const confirmMessage = '本当に削除しますか？'
 
+  const onClickDeletePlace = (index) => {
+    let result = window.confirm(confirmMessage);
+    if (result){
+      const DeletePlace = [...incompletePlaces];
+      DeletePlace.splice(index, 1);
+      setIncompletePlaces(DeletePlace);
+    }else{
+      return;
+    }
+  };
+  
   const onClickDeleteFood = (index) => {
-    const DeleteFood = [...incompleteFoods];
-    DeleteFood.splice(index, 1);
-    setIncompleteFoods(DeleteFood);
+    let result = window.confirm(confirmMessage);
+    if (result){
+      const DeleteFood = [...incompleteFoods];
+      DeleteFood.splice(index, 1);
+      setIncompleteFoods(DeleteFood);
+    }else{
+      return;
+    }
   };
 
   const onClickEditPlace = (index) => {
@@ -115,6 +144,7 @@ export const App = () => {
         onChange={onChangeTodoText}
         place={onClickPlaceAdd}
         food={onClickFoodAdd}
+        // handleChange = {onClickHandleChange}
       />
       <IncompletePlaces
         incomplete={incompletePlaces}
