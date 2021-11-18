@@ -16,10 +16,10 @@ const inputStyle = {
   outline: "none"
 };
 
-const selectStyle = {
-  height: "25px",
-  borderRadius: "10px"
-};
+// const selectStyle = {
+//   height: "25px",
+//   borderRadius: "10px"
+// };
 
 
 
@@ -37,7 +37,7 @@ export const InputTodo = (props) => {
       <div>
         <button onClick={place}>行きたいところに追加</button>
         <button onClick={food}>グルメに追加</button>
-        <select 
+        {/* <select 
           name="Italy-places" 
           value={["Milan","Venezia","Dolomiti","Firenze","Rome","Naples","Sicily"]} 
           id="Italy-places" 
@@ -50,7 +50,7 @@ export const InputTodo = (props) => {
             <option value="Rome">Rome</option>
             <option value="Naples">Naples</option>
             <option value="Sicily">Sicily</option>
-        </select>
+        </select> */}
       </div>
     </div>
   );
