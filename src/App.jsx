@@ -45,7 +45,7 @@ export const App = () => {
     const newPlaceTodos = [...incompletePlaces, todoText];
     setIncompletePlaces(newPlaceTodos);
     setTodoText("");
-    localStorage.setItem('incompletePlaces',incompletePlaces)
+    // localStorage.setItem('incompletePlaces',incompletePlaces)
 
   };
   const onClickFoodAdd = () => {
