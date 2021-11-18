@@ -22,6 +22,10 @@
   input {
     font-size: 5px;
   }
+  .place,
+  .todo {
+    font-size: 15px;
+  }
 }
 
 body {
@@ -51,12 +55,8 @@ label {
   margin: 10px;
 }
 
-.place {
-  font-size: 20px;
-}
-
 .place-list p,
-.food p {
+.food-title p {
   color: white;
   padding: 15px 0 0 15px;
   margin-top: 5px;
@@ -75,4 +75,14 @@ label {
   border-radius: 5px;
   color: rgba(107, 112, 116, 0.664);
   min-height: 50px;
+}
+
+.finished-foodLists,
+.finished-placeLists {
+  text-decoration: line-through;
+}
+
+.finished-foodLists p,
+.finished-placeLists p {
+  display: inline;
 }

@@ -6,18 +6,18 @@ import { CompletePlaces } from "./components/CompletePlaces.jsx";
 import { IncompleteFood } from "./components/IncompleteFood.jsx";
 import { CompleteFood } from "./components/CompleteFood.jsx";
 
-localStorage.setItem('key','atai')
-var key = localStorage.getItem('key') 
-localStorage.removeItem('key')
+// localStorage.setItem('key','value')
+// var key = localStorage.getItem('key') 
+// localStorage.removeItem('key')
 
-if (typeof window.localStorage !== 'undefined'){
-  /// localStorageに対応済み
-  console.log('やった！localStorage対応済み！');
-}
-else{
-  /// localStorageには未対応
-  console.error('残念...localStorage未対応！');
-}
+// if (typeof window.localStorage !== 'undefined'){
+//   /// localStorageに対応済み
+//   console.log('localStorage対応済み！');
+// }
+// else{
+//   /// localStorageには未対応
+//   console.error('localStorage未対応..');
+// }
 
 
 export const App = () => {
@@ -45,6 +45,8 @@ export const App = () => {
     const newPlaceTodos = [...incompletePlaces, todoText];
     setIncompletePlaces(newPlaceTodos);
     setTodoText("");
+    localStorage.setItem('incompletePlaces',incompletePlaces)
+
   };
   const onClickFoodAdd = () => {
     if (todoText === "") return;
