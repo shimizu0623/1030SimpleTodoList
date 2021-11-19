@@ -24,7 +24,7 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // const [change, setChange] = useState()
 
-  const [incompletePlaces, setIncompletePlaces] = useState([]);
+  const [incompletePlaces, setIncompletePlaces] = useState([{name:"",area:""}]);
     // "スペイン広場周辺　Piazza di Spagna",
     // "テスタッチョ　Testaccio",
     // "コロッセオ　Colosseo"
