@@ -24,7 +24,7 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // const [change, setChange] = useState()
 
-  const [incompletePlaces, setIncompletePlaces] = useState([{name:"w",area:"area"}]);
+  const [incompletePlaces, setIncompletePlaces] = useState([]);
     // "スペイン広場周辺　Piazza di Spagna",
     // "テスタッチョ　Testaccio",
     // "コロッセオ　Colosseo"
@@ -46,13 +46,11 @@ export const App = () => {
     const newPlaceTodos = [...incompletePlaces, {name:todoText}];
     setIncompletePlaces(newPlaceTodos);
     setTodoText("");
-    console.log(newPlaceTodos)
     // localStorage.setItem('incompletePlaces',incompletePlaces)
-
   };
   const onClickFoodAdd = () => {
     if (todoText === "") return;
-    const newFoodTodos = [...incompleteFoods, todoText];
+    const newFoodTodos = [...incompleteFoods, {name:todoText}];
     setIncompleteFoods(newFoodTodos);
     setTodoText("");
   };
