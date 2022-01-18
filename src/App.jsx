@@ -1,3 +1,5 @@
+// Categoryブランチ
+
 import React, { useState } from "react";
 import "./styles.css";
 import { InputTodo } from "./components/InputTodo.jsx";
@@ -24,38 +26,70 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // const [change, setChange] = useState()
 
-  const [incompletePlaces, setIncompletePlaces] = useState([]);
-    // "スペイン広場周辺　Piazza di Spagna",
-    // "テスタッチョ　Testaccio",
-    // "コロッセオ　Colosseo"
-  const [completePlaces, setCompletePlaces] = useState([]);
-    // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
-  const [incompleteFoods, setIncompleteFoods] = useState([]);
-    // "ダ・ブカティーノ(Da Bucatino)",
-    // "イル・フィーコ(Il Fico)"
+  // const [incompletePlaces, setIncompletePlaces] = useState([]);
+  //   // "スペイン広場周辺　Piazza di Spagna",
+  //   // "テスタッチョ　Testaccio",
+  //   // "コロッセオ　Colosseo"
+  // const [completePlaces, setCompletePlaces] = useState([]);
+  //   // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
-  const [completeFoods, setCompleteFoods] = useState([]);
-  // "サン・ピエトロ大聖堂 Basilica di San Pietro"
+  // const [incompleteFoods, setIncompleteFoods] = useState([]);
+  //   // "ダ・ブカティーノ(Da Bucatino)",
+  //   // "イル・フィーコ(Il Fico)"
 
-  
+  // const [completeFoods, setCompleteFoods] = useState([]);
+  // // "サン・ピエトロ大聖堂 Basilica di San Pietro"
+
+  const [list, setList] = useState([{
+    name: "",
+    section: "food",  // foodかplace
+    isComplete: true,   // completeかincomplete
+    category: "Milan",
+  }])
+
+
+  const [category,setCategory] = useState("Milan")
+
   const onChangeTodoText = (event) => setTodoText(event.target.value);
   
-  const onClickPlaceAdd = () => {
-    if (todoText === "") return;
-    const newPlaceTodos = [...incompletePlaces, {name:todoText}];
-    setIncompletePlaces(newPlaceTodos);
-    setTodoText("");
-    // localStorage.setItem('incompletePlaces',incompletePlaces)
-  };
-  const onClickFoodAdd = () => {
-    if (todoText === "") return;
-    const newFoodTodos = [...incompleteFoods, {name:todoText}];
-    setIncompleteFoods(newFoodTodos);
-    setTodoText("");
-  };
+  // const onClickPlaceAdd = () => {
+  //   if (todoText === "") return;
+  //   const newPlaceTodos = [...incompletePlaces, {name:todoText}];
+  //   setIncompletePlaces(newPlaceTodos);
+  //   setTodoText("");
+  //   // localStorage.setItem('incompletePlaces',incompletePlaces)
+  // };
+  // const onClickFoodAdd = () => {
+  //   if (todoText === "") return;
+  //   const newFoodTodos = [...incompleteFoods, {name:todoText}];
+  //   setIncompleteFoods(newFoodTodos);
+  //   setTodoText("");
+  // };
 
-  // const onClickHandleChange = (event) => setChange(event.target.value)
+  
+  const onClickAdd = (section) => {
+    if (todoText === "") return;
+    const todo = {
+      name: todoText,
+      section: section,  
+      isComplete: false,   
+      category: category,
+    }
+    setList([...list,todo]);
+    setTodoText("");
+  }
+  
+  const onClickPlaceAdd = () => {
+    onClickAdd('place')
+  }
+
+  const onClickFoodAdd = () => {
+    onClickAdd('food')
+  }
+
+  const onClickHandleChange = (event) => {setCategory(event.target.value)}
+
 
   const onClickCompletePlace = (index) => {
     const newIncompletePlace = [...incompletePlaces];
@@ -148,28 +182,38 @@ export const App = () => {
         onChange={onChangeTodoText}
         place={onClickPlaceAdd}
         food={onClickFoodAdd}
-        // handleChange = {onClickHandleChange}
+        handleChange = {onClickHandleChange}
       />
       <IncompletePlaces
-        incomplete={incompletePlaces}
+        incomplete={list.filter(
+          (todo)=>{return todo.section==="place" && todo.isComplete===false && todo.category===category}
+        )}
         onClickComplete={onClickCompletePlace}
         onClickDelete={onClickDeletePlace}
         onClickEdit={onClickEditPlace}
       />
 
       <CompletePlaces
-        complete={completePlaces}
+        complete={list.filter(
+          (todo)=>{return todo.section==="place" && todo.isComplete===true && todo.category===category}
+        )}
         onClickBack={onClickBackPlace}
       />
 
       <IncompleteFood
-        incomplete={incompleteFoods}
+        incomplete={list.filter(
+          (todo)=>{return todo.section==="food" && todo.isComplete===false && todo.category===category}
+        )}
         onClickComplete={onClickCompleteFood}
         onClickDelete={onClickDeleteFood}
         onClickEdit={onClickEditFood}
       />
 
-      <CompleteFood complete={completeFoods} onClickBack={onClickBackFood} />
+      <CompleteFood 
+        complete={list.filter(
+          (todo)=>{return todo.section==="food" && todo.isComplete===true && todo.category===category}
+        )} 
+        onClickBack={onClickBackFood} />
     </>
   );
 };
