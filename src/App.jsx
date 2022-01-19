@@ -1,39 +1,54 @@
 import React, { useState } from "react";
 import "./styles.css";
-import { InputTodo } from "./components/InputTodo";
-import { IncompletePlaces } from "./components/IncompletePlaces";
-import { CompletePlaces } from "./components/CompletePlaces";
-import { IncompleteFood } from "./components/IncompleteFood";
-import { CompleteFood } from "./components/CompleteFood";
+import { InputTodo } from "./components/InputTodo.jsx";
+import { IncompletePlaces } from "./components/IncompletePlaces.jsx";
+import { CompletePlaces } from "./components/CompletePlaces.jsx";
+import { IncompleteFood } from "./components/IncompleteFood.jsx";
+import { CompleteFood } from "./components/CompleteFood.jsx";
+
+// localStorage.setItem('key','value')
+// var key = localStorage.getItem('key') 
+// localStorage.removeItem('key')
+
+// if (typeof window.localStorage !== 'undefined'){
+//   /// localStorageに対応済み
+//   console.log('localStorage対応済み！');
+// }
+// else{
+//   /// localStorageには未対応
+//   console.error('localStorage未対応..');
+// }
+
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
+  // const [change, setChange] = useState()
 
-  const [incompletePlaces, setIncompletePlaces] = useState([
-    "スペイン広場周辺　Piazza di Spagna",
-    "テスタッチョ　Testaccio",
-    "コロッセオ　Colosseo"
-  ]);
-  const [completePlaces, setCompletePlaces] = useState([
-    "サン・ピエトロ大聖堂 Basilica di San Pietro"
-  ]);
+  const [incompletePlaces, setIncompletePlaces] = useState([{name:"w",area:"area"}]);
+    // "スペイン広場周辺　Piazza di Spagna",
+    // "テスタッチョ　Testaccio",
+    // "コロッセオ　Colosseo"
+  const [completePlaces, setCompletePlaces] = useState([]);
+    // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
-  const [incompleteFoods, setIncompleteFoods] = useState([
-    "ダ・ブカティーノ(Da Bucatino)",
-    "イル・フィーコ(Il Fico)"
-  ]);
+  const [incompleteFoods, setIncompleteFoods] = useState([]);
+    // "ダ・ブカティーノ(Da Bucatino)",
+    // "イル・フィーコ(Il Fico)"
 
-  const [completeFoods, setCompleteFoods] = useState([
-    "サン・ピエトロ大聖堂 Basilica di San Pietro"
-  ]);
+  const [completeFoods, setCompleteFoods] = useState([]);
+  // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
+  
   const onChangeTodoText = (event) => setTodoText(event.target.value);
-
+  
   const onClickPlaceAdd = () => {
     if (todoText === "") return;
-    const newPlaceTodos = [...incompletePlaces, todoText];
+    const newPlaceTodos = [...incompletePlaces, {name:todoText}];
     setIncompletePlaces(newPlaceTodos);
     setTodoText("");
+    console.log(newPlaceTodos)
+    // localStorage.setItem('incompletePlaces',incompletePlaces)
+
   };
   const onClickFoodAdd = () => {
     if (todoText === "") return;
@@ -41,6 +56,8 @@ export const App = () => {
     setIncompleteFoods(newFoodTodos);
     setTodoText("");
   };
+
+  // const onClickHandleChange = (event) => setChange(event.target.value)
 
   const onClickCompletePlace = (index) => {
     const newIncompletePlace = [...incompletePlaces];
@@ -60,16 +77,28 @@ export const App = () => {
     setCompleteFoods(newCompleteFood);
   };
 
-  const onClickDeletePlace = (index) => {
-    const DeletePlace = [...incompletePlaces];
-    DeletePlace.splice(index, 1);
-    setIncompletePlaces(DeletePlace);
-  };
+  const confirmMessage = '本当に削除しますか？'
 
+  const onClickDeletePlace = (index) => {
+    let result = window.confirm(confirmMessage);
+    if (result){
+      const DeletePlace = [...incompletePlaces];
+      DeletePlace.splice(index, 1);
+      setIncompletePlaces(DeletePlace);
+    }else{
+      return;
+    }
+  };
+  
   const onClickDeleteFood = (index) => {
-    const DeleteFood = [...incompleteFoods];
-    DeleteFood.splice(index, 1);
-    setIncompleteFoods(DeleteFood);
+    let result = window.confirm(confirmMessage);
+    if (result){
+      const DeleteFood = [...incompleteFoods];
+      DeleteFood.splice(index, 1);
+      setIncompleteFoods(DeleteFood);
+    }else{
+      return;
+    }
   };
 
   const onClickEditPlace = (index) => {
@@ -112,6 +141,8 @@ export const App = () => {
     setIncompleteFoods(newFood);
   };
 
+
+
   return (
     <>
       <InputTodo
@@ -119,6 +150,7 @@ export const App = () => {
         onChange={onChangeTodoText}
         place={onClickPlaceAdd}
         food={onClickFoodAdd}
+        // handleChange = {onClickHandleChange}
       />
       <IncompletePlaces
         incomplete={incompletePlaces}

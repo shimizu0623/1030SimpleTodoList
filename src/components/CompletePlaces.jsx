@@ -7,8 +7,9 @@ export const CompletePlaces = (props) => {
       <p>達成</p>
       {complete.map((toCompletePlace, index) => {
         return (
-          <div key={toCompletePlace}>
-            ■{toCompletePlace}
+          <div key={toCompletePlace} className="finished-placeLists">
+            <p>■</p>
+            {toCompletePlace}
             <button onClick={() => onClickBack(index)}>戻す</button>
           </div>
         );

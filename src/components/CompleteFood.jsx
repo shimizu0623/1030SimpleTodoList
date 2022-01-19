@@ -7,8 +7,9 @@ export const CompleteFood = (props) => {
       <p>達成</p>
       {complete.map((toCompleteFood, index) => {
         return (
-          <div key={toCompleteFood}>
-            ■{toCompleteFood}
+          <div key={toCompleteFood} className="finished-foodLists">
+            <p>■</p>
+            {toCompleteFood}
             <button onClick={() => onClickBack(index)}>戻す</button>
           </div>
         );
