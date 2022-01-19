@@ -21,7 +21,7 @@ export const IncompletePlaces = (props) => {
           <div key={toPlace} className="place">
             <label>
               <input type="checkbox" onClick={() => onClickComplete(index)} />
-              {toPlace.name}
+              {toPlace}
             </label>
             <button onClick={() => onClickEdit(index)}>編集</button>
             <button onClick={() => onClickDelete(index)}>削除</button>

@@ -24,7 +24,8 @@ export const App = () => {
   const [todoText, setTodoText] = useState("");
   // const [change, setChange] = useState()
 
-  const [incompletePlaces, setIncompletePlaces] = useState([{name:"w",area:"area"}]);
+  const [incompletePlaces, setIncompletePlaces] = useState([]);
+  // const [incompletePlaces, setIncompletePlaces] = useState([{name:"w",area:"area"}]);
     // "スペイン広場周辺　Piazza di Spagna",
     // "テスタッチョ　Testaccio",
     // "コロッセオ　Colosseo"
@@ -43,7 +44,8 @@ export const App = () => {
   
   const onClickPlaceAdd = () => {
     if (todoText === "") return;
-    const newPlaceTodos = [...incompletePlaces, {name:todoText}];
+    const newPlaceTodos = [...incompletePlaces, todoText];
+    // const newPlaceTodos = [...incompletePlaces, {name:todoText}];
     setIncompletePlaces(newPlaceTodos);
     setTodoText("");
     console.log(newPlaceTodos)
