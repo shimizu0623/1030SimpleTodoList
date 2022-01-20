@@ -1,4 +1,3 @@
-// Categoryブランチ
 
 import React, { useState } from "react";
 import "./styles.css";
@@ -8,38 +7,9 @@ import { CompletePlaces } from "./components/CompletePlaces.jsx";
 import { IncompleteFood } from "./components/IncompleteFood.jsx";
 import { CompleteFood } from "./components/CompleteFood.jsx";
 
-// localStorage.setItem('key','value')
-// var key = localStorage.getItem('key') 
-// localStorage.removeItem('key')
-
-// if (typeof window.localStorage !== 'undefined'){
-//   /// localStorageに対応済み
-//   console.log('localStorage対応済み！');
-// }
-// else{
-//   /// localStorageには未対応
-//   console.error('localStorage未対応..');
-// }
-
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
-  // const [change, setChange] = useState()
-
-
-  // const [incompletePlaces, setIncompletePlaces] = useState([]);
-  //   // "スペイン広場周辺　Piazza di Spagna",
-  //   // "テスタッチョ　Testaccio",
-  //   // "コロッセオ　Colosseo"
-  // const [completePlaces, setCompletePlaces] = useState([]);
-  //   // "サン・ピエトロ大聖堂 Basilica di San Pietro"
-
-  // const [incompleteFoods, setIncompleteFoods] = useState([]);
-  //   // "ダ・ブカティーノ(Da Bucatino)",
-  //   // "イル・フィーコ(Il Fico)"
-
-  // const [completeFoods, setCompleteFoods] = useState([]);
-  // // "サン・ピエトロ大聖堂 Basilica di San Pietro"
 
   const [list, setList] = useState([{
     name: "",
@@ -52,22 +22,7 @@ export const App = () => {
   const [category,setCategory] = useState("Milan")
 
   const onChangeTodoText = (event) => setTodoText(event.target.value);
-  
-  // const onClickPlaceAdd = () => {
-  //   if (todoText === "") return;
-  //   const newPlaceTodos = [...incompletePlaces, {name:todoText}];
-  //   setIncompletePlaces(newPlaceTodos);
-  //   setTodoText("");
-  //   // localStorage.setItem('incompletePlaces',incompletePlaces)
-  // };
-  // const onClickFoodAdd = () => {
-  //   if (todoText === "") return;
-  //   const newFoodTodos = [...incompleteFoods, {name:todoText}];
-  //   setIncompleteFoods(newFoodTodos);
-  //   setTodoText("");
-  // };
-
-  
+    
   const onClickAdd = (section) => {
     if (todoText === "") return;
     const todo = {
