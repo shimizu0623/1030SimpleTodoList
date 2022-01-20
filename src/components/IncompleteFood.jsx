@@ -20,7 +20,7 @@ export const IncompleteFood = (props) => {
           <div key={toFood} className="todo">
             <label>
               <input type="checkbox" onClick={() => onClickComplete(index)} />
-              {toFood}
+              {toFood.name}
             </label>
             <button onClick={() => onClickEdit(index)}>編集</button>
             <button onClick={() => onClickDelete(index)}>削除</button>

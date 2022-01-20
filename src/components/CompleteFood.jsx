@@ -9,7 +9,7 @@ export const CompleteFood = (props) => {
         return (
           <div key={toCompleteFood} className="finished-foodLists">
             <p>■</p>
-            {toCompleteFood}
+            {toCompleteFood.name}
             <button onClick={() => onClickBack(index)}>戻す</button>
           </div>
         );
