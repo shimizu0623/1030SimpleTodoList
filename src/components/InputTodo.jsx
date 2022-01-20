@@ -39,7 +39,7 @@ export const InputTodo = (props) => {
         <button onClick={food}>グルメに追加</button>
         <select 
           name="Italy-places" 
-          value={["Milan","Venezia","Dolomiti","Firenze","Rome","Naples","Sicily"]} 
+          // value={["Milan","Venezia","Dolomiti","Firenze","Rome","Naples","Sicily"]} 
           id="Italy-places" 
           style={selectStyle} 
           onChange={handleChange}>

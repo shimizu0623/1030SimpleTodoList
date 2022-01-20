@@ -9,7 +9,7 @@ const style = {
 
 
 export const IncompletePlaces = (props) => {
-  const { a,b,incomplete, onClickComplete, onClickDelete, onClickEdit } = props;
+  const {incomplete, onClickComplete, onClickDelete, onClickEdit } = props;
   return (
     <div style={style} className="place-list">
       <div className="place-title">
