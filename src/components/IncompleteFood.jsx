@@ -15,15 +15,15 @@ export const IncompleteFood = (props) => {
         <p>グルメ</p>
       </div>
 
-      {incomplete.map((toFood, index) => {
+      {incomplete.map((toFood) => {
         return (
           <div key={toFood} className="todo">
             <label>
-              <input type="checkbox" onClick={() => onClickComplete(index)} />
+              <input type="checkbox" onClick={() => onClickComplete(toFood.id)} />
               {toFood.name}
             </label>
-            <button onClick={() => onClickEdit(index)}>編集</button>
-            <button onClick={() => onClickDelete(index)}>削除</button>
+            <button onClick={() => onClickEdit(toFood.id)}>編集</button>
+            <button onClick={() => onClickDelete(toFood.id)}>削除</button>
           </div>
         );
       })}

@@ -5,12 +5,12 @@ export const CompleteFood = (props) => {
   return (
     <div className="finished-foodList">
       <p>達成</p>
-      {complete.map((toCompleteFood, index) => {
+      {complete.map((toCompleteFood) => {
         return (
           <div key={toCompleteFood} className="finished-foodLists">
             <p>■</p>
             {toCompleteFood.name}
-            <button onClick={() => onClickBack(index)}>戻す</button>
+            <button onClick={() => onClickBack(toCompleteFood.id)}>戻す</button>
           </div>
         );
       })}

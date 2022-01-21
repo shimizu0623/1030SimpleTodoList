@@ -16,15 +16,15 @@ export const IncompletePlaces = (props) => {
         <p>行きたいところ</p>
       </div>
 
-      {incomplete.map((toPlace, index) => {
+      {incomplete.map((toPlace) => {
         return (
           <div key={toPlace} className="place">
             <label>
-              <input type="checkbox" onClick={() => onClickComplete(index)} />
+              <input type="checkbox" onClick={() => onClickComplete(toPlace.id)} />
               {toPlace.name}
             </label>
-            <button onClick={() => onClickEdit(index)}>編集</button>
-            <button onClick={() => onClickDelete(index)}>削除</button>
+            <button onClick={() => onClickEdit(toPlace.id)}>編集</button>
+            <button onClick={() => onClickDelete(toPlace.id)}>削除</button>
           </div>
         );
       })}

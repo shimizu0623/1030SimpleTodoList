@@ -5,12 +5,12 @@ export const CompletePlaces = (props) => {
   return (
     <div className="finished-placeList">
       <p>達成</p>
-      {complete.map((toCompletePlace, index) => {
+      {complete.map((toCompletePlace) => {
         return (
           <div key={toCompletePlace} className="finished-placeLists">
             <p>■</p>
             {toCompletePlace.name}
-            <button onClick={() => onClickBack(index)}>戻す</button>
+            <button onClick={() => onClickBack(toCompletePlace.id)}>戻す</button>
           </div>
         );
       })}
