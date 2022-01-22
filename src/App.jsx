@@ -6,18 +6,13 @@ import { IncompletePlaces } from "./components/IncompletePlaces.jsx";
 import { CompletePlaces } from "./components/CompletePlaces.jsx";
 import { IncompleteFood } from "./components/IncompleteFood.jsx";
 import { CompleteFood } from "./components/CompleteFood.jsx";
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const App = () => {
   const [todoText, setTodoText] = useState("");
 
-  const [list, setList] = useState([{
-    name: "",
-    section: "food",  // foodかplace
-    isComplete: true,   // completeかincomplete
-    category: "Milan",
-  }])
-
+  const [list, setList] = useState([])
 
   const [category,setCategory] = useState("Milan")
 
@@ -26,19 +21,21 @@ export const App = () => {
   const onClickAdd = (section) => {
     if (todoText === "") return;
     const todo = {
+      id: uuidv4() ,
       name: todoText,
-      section: section,  
+      section: section,  //placeかfood
       isComplete: false,   
       category: category,
     }
     setList([...list,todo]);
     setTodoText("");
+    console.log(todo)
   }
   
   const onClickPlaceAdd = () => {
     onClickAdd('place')
   }
-
+  
   const onClickFoodAdd = () => {
     onClickAdd('food')
   }
@@ -46,88 +43,133 @@ export const App = () => {
   const onClickHandleChange = (event) => {setCategory(event.target.value)}
 
 
-  const onClickCompletePlace = (index) => {
-    const newIncompletePlace = [...incompletePlaces];
-    newIncompletePlace.splice(index, 1);
+  // const onClickCompletePlace = (index) => {
+  //   const newIncompletePlace = [...incompletePlaces];
+  //   newIncompletePlace.splice(index, 1);
 
-    const newCompletePlace = [...completePlaces, incompletePlaces[index]];
-    setIncompletePlaces(newIncompletePlace);
-    setCompletePlaces(newCompletePlace);
-  };
+  //   const newCompletePlace = [...completePlaces, incompletePlaces[index]];
+  //   setIncompletePlaces(newIncompletePlace);
+  //   setCompletePlaces(newCompletePlace);
+  // };
 
-  const onClickCompleteFood = (index) => {
-    const newInCompleteFoods = [...incompleteFoods];
-    newInCompleteFoods.splice(index, 1);
+  // const onClickCompleteFood = (index) => {
+  //   const newInCompleteFoods = [...incompleteFoods];
+  //   newInCompleteFoods.splice(index, 1);
 
-    const newCompleteFood = [...completeFoods, incompleteFoods[index]];
-    setIncompleteFoods(newInCompleteFoods);
-    setCompleteFoods(newCompleteFood);
-  };
+  //   const newCompleteFood = [...completeFoods, incompleteFoods[index]];
+  //   setIncompleteFoods(newInCompleteFoods);
+  //   setCompleteFoods(newCompleteFood);
+  // };
+  
 
+  const onClickComplete = (id) => {
+    const index = list.findIndex((todo)=>{
+    return todo.id === id
+  })
+
+  list[index].isComplete = true;
+  console.log(list)
+  setList(list)
+
+  }
+
+  
+  // const onClickDeletePlace = (index) => {
+    //   let result = window.confirm(confirmMessage);
+    //   if (result){
+      //     const DeletePlace = [...incompletePlaces];
+      //     DeletePlace.splice(index, 1);
+      //     setIncompletePlaces(DeletePlace);
+      //   }else{
+        //     return;
+        //   }
+        // };
+        
+        // const onClickDeleteFood = (index) => {
+          //   let result = window.confirm(confirmMessage);
+          //   if (result){
+            //     const DeleteFood = [...incompleteFoods];
+            //     DeleteFood.splice(index, 1);
+            //     setIncompleteFoods(DeleteFood);
+            //   }else{
+              //     return;
+              //   }
+              // };
+              
   const confirmMessage = '本当に削除しますか？'
 
-  const onClickDeletePlace = (index) => {
+  const onClickDelete = (id) => {
     let result = window.confirm(confirmMessage);
-    if (result){
-      const DeletePlace = [...incompletePlaces];
-      DeletePlace.splice(index, 1);
-      setIncompletePlaces(DeletePlace);
-    }else{
-      return;
-    }
-  };
+    if(!result) return;
+    setList(list.filter((todo)=>{
+      return todo.id !== id
+    }))  
+
+  }
+
+
+  // const onClickEditPlace = (index) => {
+  //   const EditPlace = [...incompletePlaces];
+  //   EditPlace.splice(index, 1);
+
+  //   setIncompletePlaces(EditPlace);
+
+  //   const Edit = [incompletePlaces[index]];
+  //   setTodoText(Edit);
+  // };
+
+  // const onClickEditFood = (index) => {
+  //   const EditFood = [...incompleteFoods];
+  //   EditFood.splice(index, 1);
+
+  //   setIncompleteFoods(EditFood);
+
+  //   const Edit = [incompleteFoods[index]];
+  //   setTodoText(Edit);
+  // };
+
+  const onClickEdit = (id) => {
+    if (todoText === "") return;
+  const index = list.findIndex((todo)=>{
+    return todo.id === id
+  })
+
+  list[index].name = todoText;
   
-  const onClickDeleteFood = (index) => {
-    let result = window.confirm(confirmMessage);
-    if (result){
-      const DeleteFood = [...incompleteFoods];
-      DeleteFood.splice(index, 1);
-      setIncompleteFoods(DeleteFood);
-    }else{
-      return;
-    }
-  };
+  setTodoText('')
+  setList(list)
 
-  const onClickEditPlace = (index) => {
-    const EditPlace = [...incompletePlaces];
-    EditPlace.splice(index, 1);
+  }
 
-    setIncompletePlaces(EditPlace);
 
-    const Edit = [incompletePlaces[index]];
-    setTodoText(Edit);
-  };
+  // const onClickBackPlace = (index) => {
+  //   const BackPlace = [...completePlaces];
+  //   BackPlace.splice(index, 1);
 
-  const onClickEditFood = (index) => {
-    const EditFood = [...incompleteFoods];
-    EditFood.splice(index, 1);
+  //   const newPlace = [...incompletePlaces, completePlaces[index]];
 
-    setIncompleteFoods(EditFood);
+  //   setCompletePlaces(BackPlace);
+  //   setIncompletePlaces(newPlace);
+  // };
 
-    const Edit = [incompleteFoods[index]];
-    setTodoText(Edit);
-  };
+  // const onClickBackFood = (index) => {
+  //   const BackFood = [...completeFoods];
+  //   BackFood.splice(index, 1);
 
-  const onClickBackPlace = (index) => {
-    const BackPlace = [...completePlaces];
-    BackPlace.splice(index, 1);
+  //   const newFood = [...incompleteFoods, completeFoods[index]];
 
-    const newPlace = [...incompletePlaces, completePlaces[index]];
+  //   setCompleteFoods(BackFood);
+  //   setIncompleteFoods(newFood);
+  // };
 
-    setCompletePlaces(BackPlace);
-    setIncompletePlaces(newPlace);
-  };
-
-  const onClickBackFood = (index) => {
-    const BackFood = [...completeFoods];
-    BackFood.splice(index, 1);
-
-    const newFood = [...incompleteFoods, completeFoods[index]];
-
-    setCompleteFoods(BackFood);
-    setIncompleteFoods(newFood);
-  };
-
+  const onClickBack = (id) => {
+    const index = list.findIndex((todo)=>{
+    return todo.id === id
+  })
+  list[index].isComplete = false;
+  setList(list)
+  }
+  
 
 
   return (
@@ -143,32 +185,32 @@ export const App = () => {
         incomplete={list.filter(
           (todo)=>{return todo.section==="place" && todo.isComplete===false && todo.category===category}
         )}
-        onClickComplete={onClickCompletePlace}
-        onClickDelete={onClickDeletePlace}
-        onClickEdit={onClickEditPlace}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+        onClickEdit={onClickEdit}
       />
 
       <CompletePlaces
         complete={list.filter(
-          (todo)=>{return todo.section==="place" && todo.isComplete===true && todo.category===category}
+          (todo)=>{return todo.section==="place" && todo.isComplete===true && todo.category===category }
         )}
-        onClickBack={onClickBackPlace}
+        onClickBack={onClickBack}
       />
 
       <IncompleteFood
         incomplete={list.filter(
           (todo)=>{return todo.section==="food" && todo.isComplete===false && todo.category===category}
         )}
-        onClickComplete={onClickCompleteFood}
-        onClickDelete={onClickDeleteFood}
-        onClickEdit={onClickEditFood}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+        onClickEdit={onClickEdit}
       />
 
       <CompleteFood 
         complete={list.filter(
           (todo)=>{return todo.section==="food" && todo.isComplete===true && todo.category===category}
         )} 
-        onClickBack={onClickBackFood} />
+        onClickBack={onClickBack} />
     </>
   );
 };
